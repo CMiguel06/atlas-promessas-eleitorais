@@ -7,8 +7,8 @@
 <img width="661" height="647" alt="image" src="https://github.com/user-attachments/assets/27f9d69c-8b30-4075-b750-7ee0d45d96e8" />
 
 
-## Ouve no Spotify [<img width="256" height="256" alt="image" src="https://github.com/user-attachments/assets/abdc4181-986a-493d-949b-bbb01ca41676" />
-](https://open.spotify.com/episode/2J3NspBa15KSp98vs9tjIE?si=BswUNr93QMyCrEyfRzeSng)
+## Ouve no Spotify 
+[<img width="3840" height="1155" alt="image" src="https://github.com/user-attachments/assets/4da4dcd4-4044-48fb-b7ce-fa419c0b63fb" />](https://open.spotify.com/episode/2J3NspBa15KSp98vs9tjIE?si=BswUNr93QMyCrEyfRzeSng)
 Realizado com recurso ao Notebooklm.
 
 #
