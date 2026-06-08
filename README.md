@@ -7,7 +7,7 @@
 <img width="661" height="647" alt="image" src="https://github.com/user-attachments/assets/27f9d69c-8b30-4075-b750-7ee0d45d96e8" />
 
 
-## [Spotify](https://open.spotify.com/episode/2J3NspBa15KSp98vs9tjIE?si=BswUNr93QMyCrEyfRzeSng)
+## Ouve no Spotify [<img width="3840" height="1155" alt="image" src="https://github.com/user-attachments/assets/31c8a3f9-8a04-49fc-badd-e95595bf3a2b" />](https://open.spotify.com/episode/2J3NspBa15KSp98vs9tjIE?si=BswUNr93QMyCrEyfRzeSng)
 Realizado com recurso ao Notebooklm.
 
 #
