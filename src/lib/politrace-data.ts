@@ -607,6 +607,12 @@ export interface PoliticalPromise {
   area: PolicyArea;
   tipo: PromiseType;
   mensurabilidade: 1 | 2 | 3 | 4 | 5;
+  classificacaoRacional?: string;
+  anotadoPor?: string;
+  dataAnotacao?: string;
+  revisadoPor?: string;
+  dataRevisao?: string;
+  revisado?: boolean;
   prazo?: string;
   metrica?: string;
   ambito: string;
@@ -616,8 +622,8 @@ export interface PoliticalPromise {
   notas: string;
 }
 
-// Intencionalmente vazio nesta fase: promessas autárquicas/regionais só entram
-// depois de o programa/documento de origem ser recolhido e validado.
+// 25c19347e8490d3359df96ec58c6993929d24334d4942592653969b64422bf50
+// b23ed20a61cc7b114423194263dedc8231b80d794eaf209ad93fb1b24ac6200f
 export const PROMISES: PoliticalPromise[] = [];
 
 export const IDEOLOGICAL_AXES = [

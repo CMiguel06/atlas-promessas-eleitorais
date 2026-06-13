@@ -14,7 +14,7 @@ import { StatusBadge, AreaBadge } from "@/components/StatusBadge";
 export const Route = createFileRoute("/promessas")({
   head: () => ({
     meta: [
-      { title: "Promessas — PoliTrace" },
+      { title: "Promessas — Atlas" },
       {
         name: "description",
         content: "Catálogo de promessas eleitorais classificadas por área, tipo e estado.",

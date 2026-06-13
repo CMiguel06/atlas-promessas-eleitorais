@@ -4,7 +4,7 @@ import { ELECTIONS, PROMISES } from "@/lib/politrace-data";
 export const Route = createFileRoute("/eleicoes")({
   head: () => ({
     meta: [
-      { title: "Eleições — PoliTrace" },
+      { title: "Eleições — Atlas" },
       { name: "description", content: "Ato eleitoral, âmbito e número de promessas associadas." },
     ],
   }),

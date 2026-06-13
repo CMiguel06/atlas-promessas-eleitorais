@@ -73,14 +73,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "PoliTrace — Observatório Digital de Promessas Eleitorais" },
+      { title: "Atlas — Observatório Digital de Promessas Eleitorais" },
       {
         name: "description",
         content:
           "Plataforma cívica e académica para identificar, classificar e monitorizar promessas eleitorais com transparência e neutralidade.",
       },
       { name: "author", content: "Caio Camacho" },
-      { property: "og:title", content: "PoliTrace — Observatório Digital de Promessas Eleitorais" },
+      { property: "og:title", content: "Atlas — Observatório Digital de Promessas Eleitorais" },
       {
         property: "og:description",
         content:

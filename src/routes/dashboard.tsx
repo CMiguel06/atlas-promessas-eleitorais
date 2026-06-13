@@ -12,7 +12,7 @@ import { StatusBadge } from "@/components/StatusBadge";
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "Dashboard — PoliTrace" },
+      { title: "Dashboard — Atlas" },
       {
         name: "description",
         content:

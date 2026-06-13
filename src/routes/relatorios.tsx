@@ -4,7 +4,7 @@ import { PROMISES, PARTIES, POLICY_AREAS, STATUS_LABEL, ELECTIONS } from "@/lib/
 export const Route = createFileRoute("/relatorios")({
   head: () => ({
     meta: [
-      { title: "Relatórios — PoliTrace" },
+      { title: "Relatórios — Atlas" },
       { name: "description", content: "Relatório académico exportável das promessas catalogadas." },
     ],
   }),
@@ -16,7 +16,7 @@ function Page() {
 
   function exportTxt() {
     const lines: string[] = [];
-    lines.push("PoliTrace — Relatório académico");
+    lines.push("Atlas — Relatório académico");
     lines.push(`Data: ${today}`);
     lines.push("");
     PROMISES.forEach((p) => {
@@ -31,7 +31,7 @@ function Page() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "politrace-relatorio.txt";
+    a.download = "atlas-relatorio.txt";
     a.click();
     URL.revokeObjectURL(url);
   }
@@ -39,7 +39,7 @@ function Page() {
   const sections = [
     [
       "1. Introdução",
-      "O presente relatório consolida a análise documental conduzida pelo PoliTrace, observatório académico de promessas eleitorais.",
+      "O presente relatório consolida a análise documental conduzida pelo Atlas, observatório académico de promessas eleitorais.",
     ],
     [
       "2. Objetivo",

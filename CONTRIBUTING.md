@@ -1,6 +1,6 @@
 # Contribuir
 
-Obrigado pelo interesse em contribuir para o PoliTrace.
+Obrigado pelo interesse em contribuir para o Atlas.
 
 ## Requisitos locais
 

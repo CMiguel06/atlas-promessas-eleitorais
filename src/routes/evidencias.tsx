@@ -4,7 +4,7 @@ import { PROMISES, PARTIES } from "@/lib/politrace-data";
 export const Route = createFileRoute("/evidencias")({
   head: () => ({
     meta: [
-      { title: "Evidências — PoliTrace" },
+      { title: "Evidências — Atlas" },
       {
         name: "description",
         content: "Fontes e evidências associadas a cada promessa catalogada.",

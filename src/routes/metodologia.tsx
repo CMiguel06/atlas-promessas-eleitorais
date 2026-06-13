@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/metodologia")({
   head: () => ({
     meta: [
-      { title: "Metodologia — PoliTrace" },
+      { title: "Metodologia — Atlas" },
       {
         name: "description",
         content: "Metodologia de identificação, classificação e monitorização de promessas.",

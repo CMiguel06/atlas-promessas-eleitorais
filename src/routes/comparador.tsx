@@ -5,7 +5,7 @@ import { PARTIES, PROMISES, POLICY_AREAS } from "@/lib/politrace-data";
 export const Route = createFileRoute("/comparador")({
   head: () => ({
     meta: [
-      { title: "Comparador — PoliTrace" },
+      { title: "Comparador — Atlas" },
       { name: "description", content: "Comparação documental entre forças políticas." },
     ],
   }),

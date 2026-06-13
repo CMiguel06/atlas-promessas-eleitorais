@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/etica")({
   head: () => ({
     meta: [
-      { title: "Ética e Neutralidade — PoliTrace" },
+      { title: "Ética e Neutralidade — Atlas" },
       {
         name: "description",
         content: "Princípios éticos, neutralidade e limitações do observatório.",
@@ -32,8 +32,8 @@ function Page() {
       <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Princípios</div>
       <h1 className="font-display text-4xl font-semibold mt-2">Ética, neutralidade e limitações</h1>
       <p className="text-muted-foreground mt-3">
-        O PoliTrace é um instrumento de literacia democrática. A sua utilidade depende da
-        neutralidade institucional e da prudência analítica.
+        O Atlas é um instrumento de literacia democrática. A sua utilidade depende da neutralidade
+        institucional e da prudência analítica.
       </p>
 
       <ul className="mt-8 space-y-3">

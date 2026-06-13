@@ -6,7 +6,7 @@ import { StatusBadge, AreaBadge } from "@/components/StatusBadge";
 export const Route = createFileRoute("/busca")({
   head: () => ({
     meta: [
-      { title: "Motor de busca — PoliTrace" },
+      { title: "Motor de busca — Atlas" },
       { name: "description", content: "Pesquisa textual em promessas catalogadas." },
     ],
   }),

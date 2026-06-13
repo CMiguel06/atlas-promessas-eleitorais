@@ -4,7 +4,7 @@ import { DOCUMENTS, PARTIES } from "@/lib/politrace-data";
 export const Route = createFileRoute("/documentos")({
   head: () => ({
     meta: [
-      { title: "Documentos — PoliTrace" },
+      { title: "Documentos — Atlas" },
       { name: "description", content: "Repositório de documentos políticos analisados." },
     ],
   }),

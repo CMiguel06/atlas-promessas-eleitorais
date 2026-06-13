@@ -2,7 +2,7 @@
 
 ## Visao geral
 
-O PoliTrace e uma aplicacao web TypeScript/React com renderizacao suportada por TanStack Start. A aplicacao apresenta um prototipo de observatorio de promessas eleitorais, usando dados estaticos versionados em codigo e rotas file-based para expor paginas de consulta, analise e metodologia.
+O Atlas e uma aplicacao web TypeScript/React com renderizacao suportada por TanStack Start. A aplicacao apresenta um prototipo de observatorio de promessas eleitorais, usando dados estaticos versionados em codigo e rotas file-based para expor paginas de consulta, analise e metodologia.
 
 ## Estilo arquitetural
 

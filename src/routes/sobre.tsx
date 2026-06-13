@@ -3,10 +3,10 @@ import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/sobre")({
   head: () => ({
     meta: [
-      { title: "Sobre o Projeto — PoliTrace" },
+      { title: "Sobre o Projeto — Atlas" },
       {
         name: "description",
-        content: "PoliTrace foi idealizado, concebido e produzido por Caio Camacho.",
+        content: "Atlas foi idealizado, concebido e produzido por Caio Camacho.",
       },
     ],
   }),
@@ -17,14 +17,14 @@ function Page() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
       <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Sobre</div>
-      <h1 className="font-display text-5xl font-semibold mt-2 leading-tight">PoliTrace</h1>
+      <h1 className="font-display text-5xl font-semibold mt-2 leading-tight">Atlas</h1>
       <p className="font-display italic text-2xl text-muted-foreground mt-1">
         Observatório Digital de Promessas Eleitorais
       </p>
 
       <div className="mt-10 space-y-6 text-foreground/90 leading-relaxed">
         <p>
-          O PoliTrace é um protótipo académico de Engenharia Informática, orientado à identificação,
+          O Atlas é um protótipo académico de Engenharia Informática, orientado à identificação,
           classificação, pesquisa e monitorização de promessas eleitorais e compromissos políticos
           presentes em documentos públicos.
         </p>

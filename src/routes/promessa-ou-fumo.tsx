@@ -4,7 +4,7 @@ import { useState } from "react";
 export const Route = createFileRoute("/promessa-ou-fumo")({
   head: () => ({
     meta: [
-      { title: "Promessa ou Fumo? — PoliTrace" },
+      { title: "Promessa ou Fumo? — Atlas" },
       { name: "description", content: "Classificador documental de frases políticas." },
     ],
   }),
@@ -22,17 +22,64 @@ function classify(text: string): Result {
   const t = text.toLowerCase();
   const signals: string[] = [];
 
-  const numbers =
+  const rawNumbers =
     /\b\d+([.,]\d+)?\s*(%|mil|milhões|milhoes|mil milhões|euros|€|fogos|profissionais|km|gw|mw|pontos)?\b/.test(
       t,
     );
+  const decorativeNumber =
+    /\b\d+\s+(razões para|razoes para|prioridades para|compromissos com|pilares de|eixos estratégicos|eixos estrategicos|áreas de intervenção|areas de intervencao)\b/.test(
+      t,
+    ) ||
+    /\b\d+\s+medidas para um[a]?\s+\w+\s+(portugal|madeira|futuro)\b/.test(t) ||
+    /\bmais de\s+\d+\s+anos de experiência\b/.test(t) ||
+    /\bum dos\s+\d+\s+(países|paises|regiões|regioes)\s+mais\b/.test(t);
+  const numbers = rawNumbers && !decorativeNumber;
   const deadline =
     /(até|antes de|durante|primeiro ano|primeiros? \w+ anos?|legislatura|mandato|202\d|203\d)/.test(
       t,
     );
   const legislative =
     /(lei|decreto|revisão|revisao|legislar|alterar|aprovar|projecto de lei|projeto de lei)/.test(t);
+  const legalInstrumentNumbered =
+    /\b(lei orgânica|lei organica|lei|decreto-lei|decreto lei|decreto legislativo regional|decreto regional|portaria|despacho|resolução do conselho de ministros|resolucao do conselho de ministros|resolução da assembleia da república|resolucao da assembleia da republica|resolução da assembleia legislativa da madeira|resolucao da assembleia legislativa da madeira)\s+n\.?\s*(º|o)?\s*\d+\/\d{4}(\/m)?\b/.test(
+      t,
+    );
+  const legalActionInstrument =
+    /\b(legislar|regulamentar|rever|alterar|aprovar|publicar|revogar|transpor|implementar|aplicar)\b.{0,80}\b(lei|decreto|portaria|despacho|regulamento|estatuto|código|codigo|regime jurídico|regime juridico|quadro legal)\b/.test(
+      t,
+    );
   const budget = /(orçamento|orcamento|investir|investimento|verba|dotação|dotacao|pib)/.test(t);
+  const physicalAction =
+    /\b(construir|edificar|reabilitar|requalificar)\s+(a|o|as|os|um|uma|novas?|novos?)?\s*(hospital|centro de saúde|centro de saude|escola|creche|habitação|habitacao|fogos|estrada|ponte|túnel|tunel|porto|aeroporto|linha|metro|ferrovia|infraestrutura|equipamento|bairro|edifício|edificio|residência|residencia)\b/.test(
+      t,
+    );
+  const serviceAction =
+    /\b(criar|lançar|lancar|abrir)\s+(o|a|um|uma|novo|nova)?\s*(programa|serviço|servico|gabinete|balcão|balcao|linha de apoio|plataforma|unidade|centro|escola|creche|hospital|posto|loja|fundo|agência|agencia)\s+[\wÀ-ÿ-]+/.test(
+      t,
+    );
+  const indicatorAction =
+    /\b(aumentar|reduzir|eliminar)\b.{0,60}(\d+([.,]\d+)?\s*(%|pontos|dias|meses|anos|euros|€)|taxa|tempo|prazo|listas? de espera|desemprego|emissões|emissoes|défice|defice|imposto|iva|irs|irc|renda|custo|dívida|divida)\b/.test(
+      t,
+    );
+  const deliveryAction =
+    /\b(concluir|terminar|entregar)\s+(a|o|as|os|um|uma)?\s*(obra|projecto|projeto|empreitada|hospital|escola|estrada|túnel|tunel|ponte|porto|aeroporto|metro|linha|infraestrutura)\b/.test(
+      t,
+    );
+  const fundingAction =
+    /\b(financiar|comparticipar|apoiar)\b.{0,60}((€|eur)\s*\d+|\d+([.,]\d+)?\s*(%|mil|milhões|milhoes|euros|€))\b/.test(
+      t,
+    );
+  const guaranteeAction =
+    /\bgarantir\b.{0,80}\b(direito|acesso|prestação|prestacao|licença|licenca)\b.{0,80}(\d+|lei|decreto|regime jurídico|regime juridico|quadro legal)\b/.test(
+      t,
+    );
+  const concretePoliticalAction =
+    physicalAction ||
+    serviceAction ||
+    indicatorAction ||
+    deliveryAction ||
+    fundingAction ||
+    guaranteeAction;
   const vague =
     /(apostar|reforçar|reforcar|defender|promover|valorizar|melhorar|garantir uma|uma sociedade|um país|um pais)/.test(
       t,
@@ -46,14 +93,32 @@ function classify(text: string): Result {
       t,
     );
 
-  if (numbers) signals.push("contém número/quantificação");
+  if (rawNumbers) signals.push("contém número/quantificação");
+  if (decorativeNumber) signals.push("número em enumeração retórica");
   if (deadline) signals.push("contém referência temporal/prazo");
   if (legislative) signals.push("vocabulário legislativo");
+  if (legalInstrumentNumbered) signals.push("instrumento legal português identificável");
+  if (legalActionInstrument) signals.push("verbo de ação combinado com instrumento legal");
   if (budget) signals.push("vocabulário orçamental");
+  if (concretePoliticalAction) signals.push("verbo de ação com complemento concreto");
   if (vague) signals.push("verbo programático vago");
   if (ideological) signals.push("conteúdo ideológico");
   if (rhetoric) signals.push("estrutura retórica");
 
+  if (decorativeNumber && !deadline && !legislative && !budget && !concretePoliticalAction)
+    return {
+      label: "Frase retórica",
+      detail: "A enumeração numérica funciona como recurso discursivo, sem métrica operacional.",
+      confidence: 0.74,
+      signals,
+    };
+  if (legalInstrumentNumbered || legalActionInstrument)
+    return {
+      label: "Proposta mensurável com base legal",
+      detail: "Refere instrumento legal português ou ação normativa verificável.",
+      confidence: 0.84,
+      signals,
+    };
   if (numbers && deadline)
     return {
       label: "Proposta mensurável com prazo",
@@ -66,6 +131,13 @@ function classify(text: string): Result {
       label: "Proposta mensurável",
       detail: "Contém quantificação mas não fixa prazo explícito.",
       confidence: 0.78,
+      signals,
+    };
+  if (concretePoliticalAction)
+    return {
+      label: "Proposta mensurável",
+      detail: "Usa verbo de ação política com complemento concreto verificável.",
+      confidence: 0.8,
       signals,
     };
   if (deadline && (legislative || budget))

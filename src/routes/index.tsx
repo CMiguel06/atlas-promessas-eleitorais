@@ -4,7 +4,7 @@ import { PROMISES, PARTIES, DOCUMENTS, ELECTIONS, STATUS_LABEL } from "@/lib/pol
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PoliTrace — Observatório Digital de Promessas Eleitorais" },
+      { title: "Atlas — Observatório Digital de Promessas Eleitorais" },
       {
         name: "description",
         content:
@@ -39,7 +39,7 @@ function Home() {
               Documentar a democracia.
             </h1>
             <p className="mt-8 text-lg text-muted-foreground max-w-2xl leading-relaxed">
-              O PoliTrace é uma plataforma cívica e académica para identificar, classificar e
+              O Atlas é uma plataforma cívica e académica para identificar, classificar e
               monitorizar promessas eleitorais e compromissos políticos presentes em documentos
               públicos — com fontes verificáveis, metodologia explícita e neutralidade
               institucional.

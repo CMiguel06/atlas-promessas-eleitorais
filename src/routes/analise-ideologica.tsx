@@ -5,7 +5,7 @@ import { PARTIES, IDEOLOGICAL_AXES, DOCUMENTS } from "@/lib/politrace-data";
 export const Route = createFileRoute("/analise-ideologica")({
   head: () => ({
     meta: [
-      { title: "Análise ideológica - PoliTrace" },
+      { title: "Análise ideológica - Atlas" },
       { name: "description", content: "Análise documental prudente de tendências programáticas." },
     ],
   }),

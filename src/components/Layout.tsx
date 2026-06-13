@@ -31,7 +31,7 @@ export function Layout() {
               PT
             </div>
             <div className="leading-tight">
-              <div className="font-display text-lg font-semibold tracking-tight">PoliTrace</div>
+              <div className="font-display text-lg font-semibold tracking-tight">Atlas</div>
               <div className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
                 Observatório Digital
               </div>
@@ -67,7 +67,7 @@ export function Layout() {
       <footer className="border-t border-rule bg-card mt-16">
         <div className="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-8 text-sm">
           <div>
-            <div className="font-display text-base font-semibold mb-2">PoliTrace</div>
+            <div className="font-display text-base font-semibold mb-2">Atlas</div>
             <p className="text-muted-foreground leading-relaxed">
               Observatório digital de promessas eleitorais. Projeto académico orientado à
               transparência democrática, sem recomendação de voto e sem propaganda.
@@ -99,7 +99,7 @@ export function Layout() {
         </div>
         <div className="border-t border-rule">
           <div className="max-w-7xl mx-auto px-6 py-4 text-xs text-muted-foreground flex flex-wrap justify-between gap-2">
-            <span>© {new Date().getFullYear()} PoliTrace — Caio Camacho</span>
+            <span>© {new Date().getFullYear()} Atlas — Caio Camacho</span>
             <span>v0.1 · protótipo académico</span>
           </div>
         </div>
