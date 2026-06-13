@@ -10,7 +10,7 @@ O projecto encontra-se em fase de protótipo, com corpus documental e base de pr
 
 Espaço reservado para referência bibliográfica do artigo científico associado ao projecto.
 
-DOI: inserir manualmente.
+DOI: inserir manualmente. Para breve.
 
 ## Imagens do protótipo
 
