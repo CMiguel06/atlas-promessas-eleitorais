@@ -9,7 +9,7 @@
 
 ```bash
 npm ci
-```
+``` 
 
 ## Desenvolver localmente
 
@@ -27,4 +27,4 @@ npm run build
 
 ## Dados
 
-Os dados do prototipo estao em `src/lib/politrace-data.ts`. Novas promessas so devem ser adicionadas quando houver documento de origem, URL, data de consulta e evidencias suficientes.
+Os dados do prototipo estao em `src/lib/politrace-data.ts`. Novas promessas so devem ser adicionadas quando houver documento de origem, URL, data de consulta e evidencias suficientes. Por favor não esquecer que isto trata-se de uma maquete. 
