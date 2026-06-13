@@ -18,57 +18,78 @@ export type PromiseType =
   | "ideologica"
   | "retorica";
 
+export type ValidationPhase = "por_validar" | "fonte_identificada" | "em_revisao" | "validada";
+
+export type ComplianceAssessment =
+  | "nao_avaliada"
+  | "em_analise_documental"
+  | "evidencia_insuficiente"
+  | "cumprimento_indeterminado"
+  | "avaliada";
+
+export type EvidenceType =
+  | "fonte_promessa"
+  | "evidencia_execucao"
+  | "evidencia_institucional"
+  | "evidencia_orcamental"
+  | "evidencia_legal"
+  | "nota_metodologica";
+
 export type PolicyArea =
-  | "Saúde"
-  | "Educação"
   | "Habitação"
-  | "Economia"
-  | "Fiscalidade"
-  | "Segurança"
-  | "Justiça"
+  | "Saúde"
+  | "Mobilidade"
   | "Ambiente"
-  | "Energia"
-  | "Transportes"
+  | "Educação"
+  | "Fiscalidade"
+  | "Economia"
   | "Administração Pública"
-  | "Trabalho"
-  | "Segurança Social"
-  | "Migração"
-  | "Defesa"
-  | "Europa"
-  | "Autarquias"
+  | "Coesão Territorial"
+  | "Ciência e Tecnologia"
   | "Juventude"
-  | "Ciência e Tecnologia";
+  | "Ação Social"
+  | "Turismo"
+  | "Cultura"
+  | "Segurança"
+  | "Digitalização"
+  | "Transparência e Governo Aberto";
 
 export const POLICY_AREAS: PolicyArea[] = [
-  "Saúde",
-  "Educação",
   "Habitação",
-  "Economia",
-  "Fiscalidade",
-  "Segurança",
-  "Justiça",
+  "Saúde",
+  "Mobilidade",
   "Ambiente",
-  "Energia",
-  "Transportes",
+  "Educação",
+  "Fiscalidade",
+  "Economia",
   "Administração Pública",
-  "Trabalho",
-  "Segurança Social",
-  "Migração",
-  "Defesa",
-  "Europa",
-  "Autarquias",
-  "Juventude",
+  "Coesão Territorial",
   "Ciência e Tecnologia",
+  "Juventude",
+  "Ação Social",
+  "Turismo",
+  "Cultura",
+  "Segurança",
+  "Digitalização",
+  "Transparência e Governo Aberto",
 ];
 
+export const PREPARED_DOCUMENTARY_AXES = POLICY_AREAS;
+
+export const PREPARED_AXES_NOTICE =
+  "Estes eixos indicam áreas preparadas para recolha documental futura. Não representam, por si só, promessas validadas.";
+
+export const CORPUS_METHODOLOGY_NOTICE =
+  "Os dados apresentados correspondem apenas a promessas já extraídas de documentos públicos identificados. O corpus ainda não representa o universo completo de promessas eleitorais.";
+
 export const STATUS_LABEL: Record<PromiseStatus, string> = {
-  nao_iniciada: "Não iniciada",
-  em_curso: "Em curso",
-  parcial: "Parcialmente cumprida",
-  cumprida: "Cumprida",
-  nao_cumprida: "Não cumprida",
+  nao_iniciada: "Por validar",
+  em_curso: "Em análise documental",
+  parcial: "Parcial, sujeito a revisão",
+  cumprida: "Cumprida com evidência",
+  nao_cumprida: "Sem evidência de cumprimento",
   alterada: "Alterada",
-  indeterminada: "Indeterminada",
+  indeterminada: "Cumprimento indeterminado",
   contestada: "Contestada",
 };
 
@@ -94,6 +115,30 @@ export const TYPE_LABEL: Record<PromiseType, string> = {
   retorica: "Retórica não operacionalizável",
 };
 
+export const VALIDATION_PHASE_LABEL: Record<ValidationPhase, string> = {
+  por_validar: "Por validar",
+  fonte_identificada: "Fonte da promessa identificada",
+  em_revisao: "Em revisão documental",
+  validada: "Validada",
+};
+
+export const COMPLIANCE_ASSESSMENT_LABEL: Record<ComplianceAssessment, string> = {
+  nao_avaliada: "Não avaliada",
+  em_analise_documental: "Em análise documental",
+  evidencia_insuficiente: "Evidência insuficiente",
+  cumprimento_indeterminado: "Cumprimento indeterminado",
+  avaliada: "Avaliada",
+};
+
+export const EVIDENCE_TYPE_LABEL: Record<EvidenceType, string> = {
+  fonte_promessa: "Fonte da promessa",
+  evidencia_execucao: "Evidência de execução",
+  evidencia_institucional: "Evidência institucional",
+  evidencia_orcamental: "Evidência legal/orçamental",
+  evidencia_legal: "Evidência legal/orçamental",
+  nota_metodologica: "Nota metodológica",
+};
+
 export type IdeologicalFamily =
   | "esquerda"
   | "centro-esquerda"
@@ -115,17 +160,20 @@ export const SOURCES = {
   cneAlram2025: {
     label: "CNE - Eleição para a Assembleia Legislativa da Região Autónoma da Madeira 2025",
     url: "https://www.cne.pt/content/eleicao-para-assembleia-legislativa-da-regiao-autonoma-da-madeira-2025",
-    checkedAt: "2026-05-09",
+    checkedAt: "2026-06-13",
+    note: "Página oficial da CNE para a eleição regional de 23 de março de 2025.",
   },
   cneAlram2025Candidates: {
     label: "CNE - Listas definitivamente admitidas ALRAM 2025",
     url: "https://www.cne.pt/sites/default/files/dl/eleicoes/2025_alram/lista_candidatos/2025_alram_lista_candidatos.pdf",
-    checkedAt: "2026-05-09",
+    checkedAt: "2026-06-13",
+    note: "Documento oficial com listas de candidatos. Prova existência de candidaturas, não promessas.",
   },
   cneAutarquicas2025: {
     label: "CNE - Eleições Autárquicas 2025",
     url: "https://www.cne.pt/content/eleicoes-autarquicas-2025",
-    checkedAt: "2026-05-09",
+    checkedAt: "2026-06-13",
+    note: "Página oficial da CNE para as eleições autárquicas de 12 de outubro de 2025.",
   },
   rtpAutarquicasMadeira2025: {
     label: "RTP/SGMAI - Resultados Autárquicas 2025, distrito Madeira",
@@ -153,10 +201,13 @@ export interface Party {
   classificacaoConfianca: number;
   descricao: string;
   destaqueMadeira: string;
+  preparedDocumentaryAxes: PolicyArea[];
   resultadoAutarquicasMadeira2025?: MadeiraAutarquicasResult;
   notas: string;
   fontes: SourceReference[];
 }
+
+const DEFAULT_AXES: PolicyArea[] = [...PREPARED_DOCUMENTARY_AXES];
 
 export const PARTIES: Party[] = [
   {
@@ -169,12 +220,11 @@ export const PARTIES: Party[] = [
     tipoForca: "partido",
     ambitoMadeira: "nacional_com_presenca_regional",
     classificacaoConfianca: 0.86,
-    descricao:
-      "Partido nacional com implantação regional consolidada na Madeira e presença recorrente nos órgãos autárquicos e regionais.",
-    destaqueMadeira:
-      "Nas Autárquicas 2025 concorreu autonomamente em alguns municípios, além de integrar coligações locais noutros concelhos.",
+    descricao: "Partido nacional com implantação regional consolidada na Madeira.",
+    destaqueMadeira: "Identificado nas listas da ALRAM 2025 e em resultados autárquicos agregados.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
     resultadoAutarquicasMadeira2025: { percentagem: 11.64, votos: 16179, presidencias: 2 },
-    notas: "Força dominante histórica na Madeira; classificação ideológica analítica, não oficial.",
+    notas: "Classificação ideológica analítica, não oficial.",
     fontes: [SOURCES.cneAlram2025Candidates, SOURCES.rtpAutarquicasMadeira2025],
   },
   {
@@ -182,18 +232,16 @@ export const PARTIES: Party[] = [
     sigla: "PPD/PSD.CDS-PP",
     nome: "Coligação PSD/CDS-PP",
     cor: "oklch(0.6 0.15 235)",
-    espectro: "Centro-direita / direita democrata-crista",
+    espectro: "Centro-direita / direita democrata-cristã",
     familiaIdeologica: "centro-direita",
     tipoForca: "coligacao",
     ambitoMadeira: "regional",
     classificacaoConfianca: 0.84,
-    descricao:
-      "Coligação eleitoral entre PSD e CDS-PP usada em várias disputas autárquicas na Madeira.",
-    destaqueMadeira:
-      "Foi a força mais votada no agregado das câmaras municipais da Madeira nas Autárquicas 2025.",
+    descricao: "Coligação eleitoral entre PSD e CDS-PP usada em disputas autárquicas na Madeira.",
+    destaqueMadeira: "Identificada nos resultados autárquicos agregados de 2025.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
     resultadoAutarquicasMadeira2025: { percentagem: 32.64, votos: 45353, presidencias: 4 },
-    notas:
-      "Coligação registada nos resultados autárquicos de 2025 em vários municípios da Madeira.",
+    notas: "Coligação local; não deve ser confundida com promessas autónomas sem documento.",
     fontes: [SOURCES.rtpAutarquicasMadeira2025],
   },
   {
@@ -201,17 +249,16 @@ export const PARTIES: Party[] = [
     sigla: "CDS-PP",
     nome: "CDS - Partido Popular",
     cor: "oklch(0.62 0.14 250)",
-    espectro: "Direita democrata-crista",
+    espectro: "Direita democrata-cristã",
     familiaIdeologica: "direita",
     tipoForca: "partido",
     ambitoMadeira: "nacional_com_presenca_regional",
     classificacaoConfianca: 0.86,
-    descricao:
-      "Partido nacional de matriz democrata-cristã e conservadora, com estrutura regional na Madeira.",
-    destaqueMadeira:
-      "Em 2025 surge tanto de forma autónoma como em coligação, consoante o ato eleitoral e o município.",
+    descricao: "Partido nacional de matriz democrata-cristã e conservadora.",
+    destaqueMadeira: "Identificado em fontes eleitorais regionais e autárquicas.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
     resultadoAutarquicasMadeira2025: { percentagem: 2.83, votos: 3931, presidencias: 1 },
-    notas: "Concorreu autonomamente na ALRAM 2025 e em resultados autárquicos agregados.",
+    notas: "Classificação deve ser cruzada com documentos programáticos.",
     fontes: [SOURCES.cneAlram2025Candidates, SOURCES.rtpAutarquicasMadeira2025],
   },
   {
@@ -224,12 +271,11 @@ export const PARTIES: Party[] = [
     tipoForca: "partido",
     ambitoMadeira: "nacional_com_presenca_regional",
     classificacaoConfianca: 0.88,
-    descricao: "Partido nacional de centro-esquerda com presença regional e autárquica na Madeira.",
-    destaqueMadeira:
-      "No agregado das câmaras municipais da Madeira nas Autárquicas 2025 foi a terceira força em votos.",
+    descricao: "Partido nacional de centro-esquerda com presença regional na Madeira.",
+    destaqueMadeira: "Identificado nas listas da ALRAM 2025 e em resultados autárquicos agregados.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
     resultadoAutarquicasMadeira2025: { percentagem: 13.37, votos: 18577, presidencias: 2 },
-    notas:
-      "Classificação ideológica convencional; deve ser sempre separada das promessas concretas.",
+    notas: "Classificação convencional; promessas concretas exigem documento de origem.",
     fontes: [SOURCES.cneAlram2025Candidates, SOURCES.rtpAutarquicasMadeira2025],
   },
   {
@@ -242,13 +288,11 @@ export const PARTIES: Party[] = [
     tipoForca: "partido",
     ambitoMadeira: "regional",
     classificacaoConfianca: 0.74,
-    descricao:
-      "Partido de origem madeirense, com leitura política fortemente marcada por temas regionais e locais.",
-    destaqueMadeira:
-      "Nas Autárquicas 2025 foi a segunda força mais votada no agregado das câmaras municipais da Madeira.",
+    descricao: "Partido de origem madeirense, marcado por temas regionais e locais.",
+    destaqueMadeira: "Identificado nas listas da ALRAM 2025 e em resultados autárquicos agregados.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
     resultadoAutarquicasMadeira2025: { percentagem: 18.09, votos: 25144, presidencias: 1 },
-    notas:
-      "Força regional madeirense; evitar encaixe automático esquerda/direita sem análise documental.",
+    notas: "Evitar enquadramento rígido esquerda/direita sem análise documental.",
     fontes: [SOURCES.cneAlram2025Candidates, SOURCES.rtpAutarquicasMadeira2025],
   },
   {
@@ -261,13 +305,11 @@ export const PARTIES: Party[] = [
     tipoForca: "partido",
     ambitoMadeira: "nacional_com_presenca_regional",
     classificacaoConfianca: 0.82,
-    descricao:
-      "Partido nacional de direita radical/nacional-conservadora, com representação eleitoral na Madeira.",
-    destaqueMadeira:
-      "Nas Autárquicas 2025 obteve representação relevante no agregado regional das câmaras municipais.",
+    descricao: "Partido nacional com representação eleitoral na Madeira.",
+    destaqueMadeira: "Identificado nas listas da ALRAM 2025 e em resultados autárquicos agregados.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
     resultadoAutarquicasMadeira2025: { percentagem: 11.32, votos: 15725, presidencias: 1 },
-    notas:
-      "Classificação analítica comum na literatura e cobertura política; requer evidências por documento quando usada em relatórios.",
+    notas: "Classificação analítica; relatórios devem apoiar-se em documentos específicos.",
     fontes: [SOURCES.cneAlram2025Candidates, SOURCES.rtpAutarquicasMadeira2025],
   },
   {
@@ -280,11 +322,11 @@ export const PARTIES: Party[] = [
     tipoForca: "partido",
     ambitoMadeira: "nacional_com_presenca_regional",
     classificacaoConfianca: 0.86,
-    descricao:
-      "Partido liberal, com ênfase programática em liberdade económica, simplificação do Estado e direitos individuais.",
-    destaqueMadeira: "Consta nas listas regionais e no agregado autárquico da Madeira em 2025.",
+    descricao: "Partido liberal com presença nas fontes eleitorais da Madeira.",
+    destaqueMadeira: "Identificado nas listas da ALRAM 2025 e em resultados autárquicos agregados.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
     resultadoAutarquicasMadeira2025: { percentagem: 1.41, votos: 1956, presidencias: 0 },
-    notas: "Classificação baseada no posicionamento económico liberal.",
+    notas: "Classificação baseada em posicionamento económico liberal.",
     fontes: [SOURCES.cneAlram2025Candidates, SOURCES.rtpAutarquicasMadeira2025],
   },
   {
@@ -297,12 +339,12 @@ export const PARTIES: Party[] = [
     tipoForca: "coligacao",
     ambitoMadeira: "nacional_com_presenca_regional",
     classificacaoConfianca: 0.9,
-    descricao:
-      "Coligação que agrega PCP e PEV, tradicionalmente associada à esquerda comunista e ecologista.",
-    destaqueMadeira:
-      "Surge nas listas regionais e nos resultados autárquicos agregados da Madeira em 2025.",
+    descricao: "Coligação que agrega PCP e PEV.",
+    destaqueMadeira: "Identificada nas listas da ALRAM 2025 e em resultados autárquicos agregados.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
     resultadoAutarquicasMadeira2025: { percentagem: 1.38, votos: 1921, presidencias: 0 },
-    notas: "Coligação PCP-PEV identificada nas listas da ALRAM 2025 e resultados autárquicos.",
+    notas:
+      "Coligação identificada como candidatura eleitoral; propostas exigem programa ou documento.",
     fontes: [SOURCES.cneAlram2025Candidates, SOURCES.rtpAutarquicasMadeira2025],
   },
   {
@@ -315,12 +357,11 @@ export const PARTIES: Party[] = [
     tipoForca: "partido",
     ambitoMadeira: "nacional_com_presenca_regional",
     classificacaoConfianca: 0.88,
-    descricao:
-      "Partido de esquerda, com enfoque em direitos sociais, serviços públicos e políticas de igualdade.",
-    destaqueMadeira:
-      "Participou nas eleições regionais e aparece no agregado autárquico da Madeira em 2025.",
+    descricao: "Partido de esquerda com presença eleitoral na Madeira.",
+    destaqueMadeira: "Identificado nas listas da ALRAM 2025 e em resultados autárquicos agregados.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
     resultadoAutarquicasMadeira2025: { percentagem: 0.51, votos: 707, presidencias: 0 },
-    notas: "Classificação ideológica convencional.",
+    notas: "Classificação convencional, sem inferência sobre promessas sem corpus.",
     fontes: [SOURCES.cneAlram2025Candidates, SOURCES.rtpAutarquicasMadeira2025],
   },
   {
@@ -333,13 +374,11 @@ export const PARTIES: Party[] = [
     tipoForca: "partido",
     ambitoMadeira: "nacional_com_presenca_regional",
     classificacaoConfianca: 0.84,
-    descricao:
-      "Partido de esquerda verde e progressista, com discurso centrado em democracia, ambiente e direitos sociais.",
-    destaqueMadeira:
-      "Consta no universo eleitoral analisado para a Madeira, embora com expressão autárquica agregada reduzida.",
+    descricao: "Partido de esquerda verde e progressista.",
+    destaqueMadeira: "Identificado no universo eleitoral analisado para a Madeira.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
     resultadoAutarquicasMadeira2025: { percentagem: 0.22, votos: 309, presidencias: 0 },
-    notas:
-      "Concorreu a atos eleitorais na Madeira; classificação requer confirmação documental por proposta.",
+    notas: "Classificação requer confirmação documental por proposta.",
     fontes: [SOURCES.cneAlram2025Candidates, SOURCES.rtpAutarquicasMadeira2025],
   },
   {
@@ -352,13 +391,11 @@ export const PARTIES: Party[] = [
     tipoForca: "partido",
     ambitoMadeira: "nacional_com_presenca_regional",
     classificacaoConfianca: 0.72,
-    descricao:
-      "Partido com matriz animalista, ambientalista e de causas cívicas, muitas vezes transversal ao eixo esquerda/direita.",
-    destaqueMadeira:
-      "Surge no agregado autárquico da Madeira em 2025 e nas listas regionais analisadas.",
+    descricao: "Partido com matriz animalista, ambientalista e de causas cívicas.",
+    destaqueMadeira: "Identificado nas listas da ALRAM 2025 e em resultados autárquicos agregados.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
     resultadoAutarquicasMadeira2025: { percentagem: 0.57, votos: 797, presidencias: 0 },
-    notas:
-      "Não reduzir automaticamente a esquerda/direita; usar eixo ecologista e propostas concretas.",
+    notas: "Usar eixo ecologista e propostas concretas, não rótulo partidário isolado.",
     fontes: [SOURCES.cneAlram2025Candidates, SOURCES.rtpAutarquicasMadeira2025],
   },
   {
@@ -371,12 +408,11 @@ export const PARTIES: Party[] = [
     tipoForca: "partido",
     ambitoMadeira: "nacional_com_presenca_regional",
     classificacaoConfianca: 0.76,
-    descricao:
-      "Partido de direita, tratado aqui com classificação prudente até haver corpus programático local suficiente.",
-    destaqueMadeira:
-      "Consta nas listas da ALRAM 2025 e aparece nos resultados autárquicos agregados da Madeira.",
+    descricao: "Partido de direita tratado com classificação prudente nesta base.",
+    destaqueMadeira: "Identificado nas listas da ALRAM 2025 e em resultados autárquicos agregados.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
     resultadoAutarquicasMadeira2025: { percentagem: 0.25, votos: 342, presidencias: 0 },
-    notas: "Classificação analítica; deve ser revista contra documentos programáticos.",
+    notas: "Classificação analítica a rever contra documentos programáticos.",
     fontes: [SOURCES.cneAlram2025Candidates, SOURCES.rtpAutarquicasMadeira2025],
   },
   {
@@ -389,12 +425,11 @@ export const PARTIES: Party[] = [
     tipoForca: "partido",
     ambitoMadeira: "nacional_com_presenca_regional",
     classificacaoConfianca: 0.62,
-    descricao:
-      "Partido nacional com discurso de protesto e posicionamento classificado de forma prudente nesta base.",
-    destaqueMadeira:
-      "Identificado nas fontes eleitorais regionais e no agregado autárquico da Madeira em 2025.",
+    descricao: "Partido nacional com presença em fontes eleitorais regionais.",
+    destaqueMadeira: "Identificado nas listas da ALRAM 2025 e em resultados autárquicos agregados.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
     resultadoAutarquicasMadeira2025: { percentagem: 0.19, votos: 263, presidencias: 0 },
-    notas: "Classificação de baixa confiança; precisa de corpus programático para maior rigor.",
+    notas: "Classificação de baixa confiança; precisa de corpus programático.",
     fontes: [SOURCES.cneAlram2025Candidates, SOURCES.rtpAutarquicasMadeira2025],
   },
   {
@@ -402,17 +437,15 @@ export const PARTIES: Party[] = [
     sigla: "PTP.MPT.RIR",
     nome: "Força Madeira",
     cor: "oklch(0.66 0.14 85)",
-    espectro: "Regional/local, heterogeneo",
+    espectro: "Regional/local, heterogéneo",
     familiaIdeologica: "regional-local",
     tipoForca: "coligacao",
     ambitoMadeira: "regional",
     classificacaoConfianca: 0.58,
-    descricao:
-      "Coligação regional identificada nas listas da ALRAM 2025, composta por forças com perfis programáticos diferentes.",
-    destaqueMadeira:
-      "Deve ser tratada como candidatura regional específica e não como simples soma das famílias ideológicas dos partidos.",
-    notas:
-      "Coligação heterogénea; não deve ser colocada rigidamente em esquerda/direita sem programa.",
+    descricao: "Coligação regional identificada nas listas da ALRAM 2025.",
+    destaqueMadeira: "Deve ser tratada como candidatura regional específica.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
+    notas: "Não colocar rigidamente em esquerda/direita sem programa.",
     fontes: [SOURCES.cneAlram2025Candidates],
   },
   {
@@ -425,11 +458,11 @@ export const PARTIES: Party[] = [
     tipoForca: "partido",
     ambitoMadeira: "regional",
     classificacaoConfianca: 0.5,
-    descricao:
-      "Partido com presença regional/local na Madeira e expressão sobretudo dependente do contexto eleitoral concreto.",
-    destaqueMadeira: "Aparece no agregado das câmaras municipais da Madeira nas Autárquicas 2025.",
+    descricao: "Partido com presença regional/local na Madeira.",
+    destaqueMadeira: "Identificado em resultados autárquicos agregados.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
     resultadoAutarquicasMadeira2025: { percentagem: 0.52, votos: 719, presidencias: 0 },
-    notas: "Surge em resultados autárquicos; classificar por propostas, não por rótulo.",
+    notas: "Classificar por propostas documentadas, não apenas por sigla.",
     fontes: [SOURCES.rtpAutarquicasMadeira2025],
   },
   {
@@ -442,11 +475,11 @@ export const PARTIES: Party[] = [
     tipoForca: "partido",
     ambitoMadeira: "nacional_com_presenca_regional",
     classificacaoConfianca: 0.54,
-    descricao:
-      "Partido com matriz ecologista/local, aqui tratado como força de classificação variável conforme documentos locais.",
-    destaqueMadeira: "Tem presença residual no agregado autárquico da Madeira em 2025.",
+    descricao: "Partido com matriz ecologista/local.",
+    destaqueMadeira: "Identificado em resultados autárquicos agregados.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
     resultadoAutarquicasMadeira2025: { percentagem: 0.13, votos: 179, presidencias: 0 },
-    notas: "Presença autárquica residual em 2025; precisa de documentos locais.",
+    notas: "Presença residual em 2025; precisa de documentos locais.",
     fontes: [SOURCES.rtpAutarquicasMadeira2025],
   },
   {
@@ -459,9 +492,9 @@ export const PARTIES: Party[] = [
     tipoForca: "partido",
     ambitoMadeira: "nacional_com_presenca_regional",
     classificacaoConfianca: 0.44,
-    descricao:
-      "Partido nacional com presença eleitoral pontual; a classificação ideológica deve ser feita por programa e não apenas por sigla.",
-    destaqueMadeira: "Surge no agregado autárquico das câmaras municipais da Madeira em 2025.",
+    descricao: "Partido nacional com presença eleitoral pontual.",
+    destaqueMadeira: "Identificado em resultados autárquicos agregados.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
     resultadoAutarquicasMadeira2025: { percentagem: 0.14, votos: 190, presidencias: 0 },
     notas: "Não classificar sem corpus documental.",
     fontes: [SOURCES.rtpAutarquicasMadeira2025],
@@ -471,15 +504,14 @@ export const PARTIES: Party[] = [
     sigla: "PPM",
     nome: "Partido Popular Monárquico",
     cor: "oklch(0.56 0.11 270)",
-    espectro: "Direita monarquica/conservadora",
+    espectro: "Direita monárquica/conservadora",
     familiaIdeologica: "direita",
     tipoForca: "partido",
     ambitoMadeira: "nacional_com_presenca_regional",
     classificacaoConfianca: 0.76,
-    descricao:
-      "Partido monárquico e conservador, incluído nas fontes eleitorais regionais analisadas.",
-    destaqueMadeira:
-      "Consta nas listas da ALRAM 2025; sem resultado autónomo destacado no agregado autárquico usado pela aplicação.",
+    descricao: "Partido monárquico e conservador incluído nas fontes eleitorais regionais.",
+    destaqueMadeira: "Identificado nas listas da ALRAM 2025.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
     notas: "Consta nas listas da ALRAM 2025.",
     fontes: [SOURCES.cneAlram2025Candidates],
   },
@@ -493,13 +525,11 @@ export const PARTIES: Party[] = [
     tipoForca: "grupo_cidadaos",
     ambitoMadeira: "local",
     classificacaoConfianca: 0.4,
-    descricao:
-      "Categoria agregada de candidaturas independentes locais, sem família ideológica comum.",
-    destaqueMadeira:
-      "No agregado autárquico da Madeira em 2025 reúne listas de cidadãos de diferentes municípios.",
+    descricao: "Categoria agregada de candidaturas independentes locais.",
+    destaqueMadeira: "Identificada no agregado autárquico da Madeira em 2025.",
+    preparedDocumentaryAxes: DEFAULT_AXES,
     resultadoAutarquicasMadeira2025: { percentagem: 2.43, votos: 3378, presidencias: 0 },
-    notas:
-      "Categoria agregada nos resultados autárquicos; cada grupo deve ser analisado separadamente.",
+    notas: "Cada grupo deve ser analisado separadamente.",
     fontes: [SOURCES.rtpAutarquicasMadeira2025],
   },
 ];
@@ -542,10 +572,13 @@ export interface PoliticalDocument {
   partidoId?: string;
   eleicaoId?: string;
   data: string;
+  dataConsulta: string;
   paginas: number;
   fonte: string;
+  fonteId?: keyof typeof SOURCES;
   url?: string;
   estadoRecolha: "verificado" | "por_recolher" | "em_validacao";
+  notasMetodologicas: string;
 }
 
 export const DOCUMENTS: PoliticalDocument[] = [
@@ -555,10 +588,14 @@ export const DOCUMENTS: PoliticalDocument[] = [
     tipo: "Fonte eleitoral oficial",
     eleicaoId: "alram-2025",
     data: "2025-03-23",
+    dataConsulta: SOURCES.cneAlram2025.checkedAt,
     paginas: 1,
     fonte: SOURCES.cneAlram2025.label,
+    fonteId: "cneAlram2025",
     url: SOURCES.cneAlram2025.url,
     estadoRecolha: "verificado",
+    notasMetodologicas:
+      "Identifica o ato eleitoral e documentos oficiais associados. Não contém, por si só, promessas eleitorais.",
   },
   {
     id: "doc-cne-alram-2025-listas",
@@ -566,10 +603,14 @@ export const DOCUMENTS: PoliticalDocument[] = [
     tipo: "Lista de candidatos",
     eleicaoId: "alram-2025",
     data: "2025-03-23",
+    dataConsulta: SOURCES.cneAlram2025Candidates.checkedAt,
     paginas: 44,
     fonte: SOURCES.cneAlram2025Candidates.label,
+    fonteId: "cneAlram2025Candidates",
     url: SOURCES.cneAlram2025Candidates.url,
     estadoRecolha: "verificado",
+    notasMetodologicas:
+      "Prova documental da admissão de candidaturas. Não deve ser usada como prova de cumprimento de promessas.",
   },
   {
     id: "doc-cne-aut-2025",
@@ -577,10 +618,13 @@ export const DOCUMENTS: PoliticalDocument[] = [
     tipo: "Fonte eleitoral oficial",
     eleicaoId: "aut-madeira-2025",
     data: "2025-10-12",
+    dataConsulta: SOURCES.cneAutarquicas2025.checkedAt,
     paginas: 1,
     fonte: SOURCES.cneAutarquicas2025.label,
+    fonteId: "cneAutarquicas2025",
     url: SOURCES.cneAutarquicas2025.url,
     estadoRecolha: "verificado",
+    notasMetodologicas: "Identifica o ato eleitoral autárquico. Não contém extração de promessas.",
   },
   {
     id: "doc-rtp-madeira-aut-2025",
@@ -588,12 +632,42 @@ export const DOCUMENTS: PoliticalDocument[] = [
     tipo: "Resultados eleitorais agregados",
     eleicaoId: "aut-madeira-2025",
     data: "2025-11-03",
+    dataConsulta: SOURCES.rtpAutarquicasMadeira2025.checkedAt,
     paginas: 1,
     fonte: SOURCES.rtpAutarquicasMadeira2025.label,
+    fonteId: "rtpAutarquicasMadeira2025",
     url: SOURCES.rtpAutarquicasMadeira2025.url,
     estadoRecolha: "verificado",
+    notasMetodologicas:
+      "Fonte para resultados agregados. Não é fonte de promessas nem de cumprimento.",
+  },
+  {
+    id: "todo-programas-eleitorais-madeira-2025",
+    titulo: "Programas eleitorais oficiais Madeira 2025",
+    tipo: "TODO técnico de recolha",
+    eleicaoId: "alram-2025",
+    data: "2025-03-23",
+    dataConsulta: "2026-06-13",
+    paginas: 0,
+    fonte: "Programas oficiais de partidos ou candidaturas",
+    estadoRecolha: "por_recolher",
+    notasMetodologicas:
+      "Recolher apenas documentos oficiais acessíveis e verificáveis antes de extrair promessas. Até lá, o catálogo de promessas permanece sem entradas inventadas.",
   },
 ];
+
+export interface PromiseEvidence {
+  id: string;
+  tipo: EvidenceType;
+  titulo: string;
+  descricao: string;
+  url?: string;
+  entidade: string;
+  data?: string;
+  dataConsulta: string;
+  fiabilidade: "alta" | "media" | "baixa";
+  nota: string;
+}
 
 export interface PoliticalPromise {
   id: string;
@@ -603,27 +677,25 @@ export interface PoliticalPromise {
   partidoId: string;
   eleicaoId: string;
   documentoId: string;
-  data: string;
+  fonteId: keyof typeof SOURCES | string;
   area: PolicyArea;
+  eixo: PolicyArea;
   tipo: PromiseType;
   mensurabilidade: 1 | 2 | 3 | 4 | 5;
-  classificacaoRacional?: string;
-  anotadoPor?: string;
-  dataAnotacao?: string;
-  revisadoPor?: string;
-  dataRevisao?: string;
-  revisado?: boolean;
-  prazo?: string;
-  metrica?: string;
   ambito: string;
   status: PromiseStatus;
+  faseValidacao: ValidationPhase;
+  avaliacaoCumprimento: ComplianceAssessment;
   confianca: number;
-  evidencias: string[];
-  notas: string;
+  url?: string;
+  dataDocumento: string;
+  dataConsulta: string;
+  prazo?: string;
+  metrica?: string;
+  notasMetodologicas: string;
+  evidencias: PromiseEvidence[];
 }
 
-// 25c19347e8490d3359df96ec58c6993929d24334d4942592653969b64422bf50
-// b23ed20a61cc7b114423194263dedc8231b80d794eaf209ad93fb1b24ac6200f
 export const PROMISES: PoliticalPromise[] = [];
 
 export const IDEOLOGICAL_AXES = [

@@ -11,7 +11,7 @@ As paginas importam colecoes estaticas e calculam agregacoes em memoria:
 - totais de partidos, documentos, eleicoes e promessas;
 - distribuicao de promessas por estado, area e partido;
 - filtros textuais locais;
-- resultado heuristico do classificador "Promessa ou Fumo?".
+- resultado heuristico do classificador documental.
 
 ## Validacao
 

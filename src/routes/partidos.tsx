@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PARTIES, PROMISES } from "@/lib/politrace-data";
+import { PARTIES, PREPARED_AXES_NOTICE, PROMISES } from "@/lib/politrace-data";
 
 export const Route = createFileRoute("/partidos")({
   head: () => ({
@@ -74,6 +74,20 @@ function Page() {
                 </div>
               </dl>
               <p className="mt-4 text-sm text-foreground/90 leading-relaxed">{p.descricao}</p>
+              <div className="mt-4">
+                <h3 className="text-sm font-medium">Eixos preparados para fase documental</h3>
+                <p className="text-xs text-muted-foreground mt-1">{PREPARED_AXES_NOTICE}</p>
+                <ul className="mt-3 flex flex-wrap gap-2">
+                  {p.preparedDocumentaryAxes.map((axis) => (
+                    <li
+                      key={axis}
+                      className="text-xs px-2 py-0.5 border border-border bg-paper rounded"
+                    >
+                      {axis}
+                    </li>
+                  ))}
+                </ul>
+              </div>
               {p.resultadoAutarquicasMadeira2025 && (
                 <dl className="mt-4 grid grid-cols-3 gap-3 rounded border border-rule bg-paper p-3 text-sm">
                   <div>

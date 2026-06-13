@@ -38,7 +38,7 @@ function Page() {
         },
         {
           t: "4. Estado de cumprimento",
-          d: "Atribuído com base em evidências documentais públicas e nível de confiança quantificado.",
+          d: "Só é avaliado quando existem evidências externas de execução, institucionais, legais ou orçamentais. A fonte eleitoral prova a existência documental da promessa, não o seu cumprimento.",
         },
         {
           t: "5. Revisão humana",

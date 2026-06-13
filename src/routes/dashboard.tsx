@@ -1,8 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  PROMISES,
+  CORPUS_METHODOLOGY_NOTICE,
+  DOCUMENTS,
+  ELECTIONS,
   PARTIES,
   POLICY_AREAS,
+  PREPARED_AXES_NOTICE,
+  PREPARED_DOCUMENTARY_AXES,
+  PROMISES,
+  SOURCES,
   STATUS_LABEL,
   STATUS_TOKEN,
   type PromiseStatus,
@@ -15,8 +21,7 @@ export const Route = createFileRoute("/dashboard")({
       { title: "Dashboard — Atlas" },
       {
         name: "description",
-        content:
-          "Visão agregada de promessas, estados de cumprimento e distribuição por área política.",
+        content: "Visão agregada do corpus documental validado e da preparação metodológica.",
       },
     ],
   }),
@@ -29,62 +34,70 @@ function Dashboard() {
     s: s as PromiseStatus,
     n: PROMISES.filter((p) => p.status === s).length,
   }));
-  const byArea = POLICY_AREAS.map((a) => ({ a, n: PROMISES.filter((p) => p.area === a).length }))
-    .filter((x) => x.n > 0)
-    .sort((x, y) => y.n - x.n);
-  const byParty = PARTIES.map((p) => ({
-    ...p,
-    n: PROMISES.filter((pr) => pr.partidoId === p.id).length,
-  }));
-  const avgMens = total
-    ? (PROMISES.reduce((a, p) => a + p.mensurabilidade, 0) / total).toFixed(2)
-    : "n/a";
+  const byArea = POLICY_AREAS.map((area) => ({
+    area,
+    n: PROMISES.filter((p) => p.area === area).length,
+  })).filter((item) => item.n > 0);
+  const verifiedDocuments = DOCUMENTS.filter((document) => document.estadoRecolha === "verificado");
+
+  const summary = [
+    { label: "Promessas no corpus inicial validado", value: total },
+    { label: "Fontes documentais registadas", value: Object.keys(SOURCES).length },
+    { label: "Partidos/candidaturas registadas", value: PARTIES.length },
+    { label: "Eleições registadas", value: ELECTIONS.length },
+    { label: "Áreas/eixos preparados", value: PREPARED_DOCUMENTARY_AXES.length },
+  ];
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
       <div className="mb-10">
-        <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Visão geral</div>
+        <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+          Visão geral documental
+        </div>
         <h1 className="font-display text-4xl font-semibold mt-2">Dashboard analítico</h1>
-        <p className="text-muted-foreground mt-2 max-w-2xl">
-          Indicadores agregados sobre o universo de promessas catalogadas. Nesta versão Madeira,
-          promessas só entram depois de existir documento de origem validado.
-        </p>
+        <p className="text-muted-foreground mt-2 max-w-3xl">{CORPUS_METHODOLOGY_NOTICE}</p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-        {[
-          { l: "Promessas", v: total },
-          { l: "Mensurabilidade média", v: avgMens },
-          { l: "Cumpridas", v: PROMISES.filter((p) => p.status === "cumprida").length },
-          { l: "Não cumpridas", v: PROMISES.filter((p) => p.status === "nao_cumprida").length },
-        ].map((k) => (
-          <div key={k.l} className="border border-rule bg-card p-5 rounded-lg">
-            <div className="text-xs uppercase tracking-[0.16em] text-muted-foreground">{k.l}</div>
-            <div className="font-display text-3xl font-semibold mt-2 tabular-nums">{k.v}</div>
+      <section className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+        {summary.map((item) => (
+          <div key={item.label} className="border border-rule bg-card p-5 rounded-lg">
+            <div className="text-xs uppercase tracking-[0.16em] text-muted-foreground">
+              {item.label}
+            </div>
+            <div className="font-display text-3xl font-semibold mt-2 tabular-nums">
+              {item.value}
+            </div>
           </div>
         ))}
-      </div>
+      </section>
+
+      <section className="border border-rule bg-card rounded-lg p-6 mb-8">
+        <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+          Amostra inicial validada
+        </div>
+        <h2 className="font-display text-2xl font-semibold mt-2">Corpus documental em validação</h2>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-3 max-w-4xl">
+          O projecto já contém atos eleitorais, forças políticas, fontes eleitorais e documentos
+          registados. Nenhuma promessa é adicionada sem documento oficial verificável, URL, data de
+          consulta e nota metodológica. A ausência de promessas neste momento reflecte contenção
+          metodológica, não ausência de compromissos políticos.
+        </p>
+        {total < 5 && (
+          <p className="mt-4 text-sm border border-rule bg-paper rounded p-3 text-muted-foreground">
+            Aviso metodológico: o número de promessas validadas é baixo ou nulo. Não devem ser
+            retiradas conclusões globais sobre cumprimento, distribuição temática ou comparação
+            partidária.
+          </p>
+        )}
+      </section>
 
       <div className="grid lg:grid-cols-2 gap-8">
-        {total === 0 && (
-          <section className="border border-rule bg-card rounded-lg p-6 lg:col-span-2">
-            <h2 className="font-display text-xl font-semibold mb-2">
-              Corpus de promessas por validar
-            </h2>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              A base já contém forças políticas, eleições e fontes eleitorais da Madeira. O catálogo
-              de promessas está vazio de propósito: a próxima fase é recolher programas
-              autárquicos/regionais, guardar URL e data de consulta, e só depois extrair
-              compromissos.
-            </p>
-          </section>
-        )}
         <section className="border border-rule bg-card rounded-lg p-6">
           <h2 className="font-display text-xl font-semibold mb-4">Distribuição por estado</h2>
           <ul className="space-y-2">
             {byStatus.map(({ s, n }) => (
               <li key={s} className="flex items-center gap-3">
-                <div className="w-44">
+                <div className="w-52">
                   <StatusBadge status={s} />
                 </div>
                 <div className="flex-1 h-2 bg-secondary rounded">
@@ -103,42 +116,80 @@ function Dashboard() {
         </section>
 
         <section className="border border-rule bg-card rounded-lg p-6">
-          <h2 className="font-display text-xl font-semibold mb-4">
-            Áreas políticas mais frequentes
-          </h2>
-          <ul className="space-y-2">
-            {byArea.map(({ a, n }) => (
-              <li key={a} className="flex items-center gap-3">
-                <span className="w-44 text-sm">{a}</span>
-                <div className="flex-1 h-2 bg-secondary rounded">
-                  <div
-                    className="h-2 rounded bg-primary"
-                    style={{ width: `${(n / byArea[0].n) * 100}%` }}
-                  />
+          <h2 className="font-display text-xl font-semibold mb-4">Documentos verificados</h2>
+          <ul className="space-y-3 text-sm">
+            {verifiedDocuments.map((document) => (
+              <li key={document.id} className="border-b border-rule pb-3 last:border-0 last:pb-0">
+                <div className="font-medium">{document.titulo}</div>
+                <div className="text-xs text-muted-foreground">
+                  {document.tipo} · consulta {document.dataConsulta}
                 </div>
-                <span className="text-sm tabular-nums w-8 text-right">{n}</span>
               </li>
             ))}
-            {byArea.length === 0 && (
-              <li className="text-sm text-muted-foreground">
-                Sem promessas classificadas por área nesta fase.
+          </ul>
+        </section>
+
+        <section className="border border-rule bg-card rounded-lg p-6 lg:col-span-2">
+          <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
+            <div>
+              <h2 className="font-display text-xl font-semibold">
+                Eixos preparados para fase documental
+              </h2>
+              <p className="text-sm text-muted-foreground mt-1">{PREPARED_AXES_NOTICE}</p>
+            </div>
+            <span className="text-sm tabular-nums text-muted-foreground">
+              {PREPARED_DOCUMENTARY_AXES.length} eixos
+            </span>
+          </div>
+          <ul className="flex flex-wrap gap-2">
+            {PREPARED_DOCUMENTARY_AXES.map((axis) => (
+              <li key={axis} className="text-xs px-2 py-1 border border-border bg-paper rounded">
+                {axis}
               </li>
-            )}
+            ))}
           </ul>
         </section>
 
         <section className="border border-rule bg-card rounded-lg p-6 lg:col-span-2">
           <h2 className="font-display text-xl font-semibold mb-4">Promessas por força política</h2>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {byParty.map((p) => (
-              <div key={p.id} className="p-4 rounded border border-rule">
-                <div className="w-3 h-3 rounded-full mb-2" style={{ background: p.cor }} />
-                <div className="font-medium">{p.sigla}</div>
-                <div className="text-xs text-muted-foreground">{p.nome}</div>
-                <div className="font-display text-2xl mt-2 tabular-nums">{p.n}</div>
-              </div>
-            ))}
+            {PARTIES.map((party) => {
+              const count = PROMISES.filter((promise) => promise.partidoId === party.id).length;
+              return (
+                <div key={party.id} className="p-4 rounded border border-rule">
+                  <div className="w-3 h-3 rounded-full mb-2" style={{ background: party.cor }} />
+                  <div className="font-medium">{party.sigla}</div>
+                  <div className="text-xs text-muted-foreground">{party.nome}</div>
+                  <div className="font-display text-2xl mt-2 tabular-nums">{count}</div>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    {party.preparedDocumentaryAxes.length} eixos preparados
+                  </div>
+                </div>
+              );
+            })}
           </div>
+        </section>
+
+        <section className="border border-rule bg-card rounded-lg p-6 lg:col-span-2">
+          <h2 className="font-display text-xl font-semibold mb-4">Áreas com promessas extraídas</h2>
+          {byArea.length > 0 ? (
+            <ul className="space-y-2">
+              {byArea.map(({ area, n }) => (
+                <li key={area} className="flex items-center gap-3">
+                  <span className="w-56 text-sm">{area}</span>
+                  <div className="flex-1 h-2 bg-secondary rounded">
+                    <div className="h-2 rounded bg-primary" style={{ width: `${n * 100}%` }} />
+                  </div>
+                  <span className="text-sm tabular-nums w-8 text-right">{n}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-sm text-muted-foreground">
+              Sem promessas classificadas por área nesta fase. Os eixos acima são apenas estrutura
+              de preparação documental.
+            </p>
+          )}
         </section>
       </div>
     </div>

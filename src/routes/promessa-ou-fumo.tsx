@@ -4,7 +4,7 @@ import { useState } from "react";
 export const Route = createFileRoute("/promessa-ou-fumo")({
   head: () => ({
     meta: [
-      { title: "Promessa ou Fumo? — Atlas" },
+      { title: "Classificador documental — Atlas" },
       { name: "description", content: "Classificador documental de frases políticas." },
     ],
   }),
@@ -204,7 +204,7 @@ function Page() {
       <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
         Ferramenta heurística
       </div>
-      <h1 className="font-display text-4xl font-semibold mt-2">Promessa ou Fumo?</h1>
+      <h1 className="font-display text-4xl font-semibold mt-2">Classificador documental</h1>
       <p className="text-muted-foreground mt-2">
         Insira uma frase política. O sistema indica, de forma documental e prudente, se se trata de
         uma promessa concreta, vaga, ideológica, retórica, mensurável ou com prazo.

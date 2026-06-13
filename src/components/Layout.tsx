@@ -9,7 +9,7 @@ const NAV = [
   { to: "/documentos", label: "Documentos" },
   { to: "/busca", label: "Busca" },
   { to: "/comparador", label: "Comparador" },
-  { to: "/promessa-ou-fumo", label: "Promessa ou Fumo?" },
+  { to: "/promessa-ou-fumo", label: "Classificador" },
   { to: "/analise-ideologica", label: "Análise" },
   { to: "/evidencias", label: "Evidências" },
   { to: "/relatorios", label: "Relatórios" },

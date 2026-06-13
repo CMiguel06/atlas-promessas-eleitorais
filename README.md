@@ -26,7 +26,7 @@ DOI: inserir manualmente.
 - Detector de promessas em documentos políticos
 - Classificação por área temática
 - Avaliação do grau de mensurabilidade
-- Acompanhamento do estado de cumprimento
+- Rastreio documental de execução e avaliação de cumprimento quando houver evidência externa
 - Comparação entre partidos
 - Análise documental de tendências ideológicas
 - Registo de fontes e evidências
@@ -49,12 +49,6 @@ npm run dev
 - Fact-checking
 - Ética Algorítmica
 - Visualização de Dados
-
-## Ouve no Spotify
-
-[<img width="3840" height="1155" alt="image" src="https://github.com/user-attachments/assets/4da4dcd4-4044-48fb-b7ce-fa419c0b63fb" />](https://open.spotify.com/episode/2J3NspBa15KSp98vs9tjIE?si=BswUNr93QMyCrEyfRzeSng)
-
-Realizado com recurso ao NotebookLM.
 
 ## Limitações
 

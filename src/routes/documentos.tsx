@@ -29,8 +29,10 @@ function Page() {
               <div className="flex-1 min-w-[260px]">
                 <h3 className="font-display text-lg font-semibold">{d.titulo}</h3>
                 <div className="text-xs text-muted-foreground mt-1">
-                  {d.tipo} · {d.fonte} · {d.data} · {d.paginas} páginas · {d.estadoRecolha}
+                  {d.tipo} · {d.fonte} · documento {d.data} · consulta {d.dataConsulta} ·{" "}
+                  {d.paginas} páginas · {d.estadoRecolha}
                 </div>
+                <p className="text-sm text-muted-foreground mt-2">{d.notasMetodologicas}</p>
               </div>
               {party && (
                 <span
