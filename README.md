@@ -56,10 +56,10 @@ npm run dev
 
 Realizado com recurso ao NotebookLM.
 
-Limitações
+## Limitações
 
 Este projecto tem finalidade académica e educativa. Não recomenda voto, não produz propaganda, não substitui análise jornalística ou científica especializada e não deve ser utilizado para microtargeting político.
 
-Autor
+## Autor
 
 Projecto idealizado, concebido e produzido por Caio Camacho.
