@@ -1,5 +1,7 @@
 # Contribuir
 
+
+Críticas, sugestões e olhares de fora são bem-vindos. Este tipo de trabalho beneficia exactamente disso.
 Obrigado pelo interesse em contribuir para o Atlas.
 
 ## Requisitos locais
@@ -13,7 +15,7 @@ Obrigado pelo interesse em contribuir para o Atlas.
 npm ci
 ```
 
-## Validacao antes de submeter alteracoes
+## Validacão antes de submeter alteracoes
 
 ```bash
 npm run typecheck
@@ -23,7 +25,7 @@ npm run build
 
 ## Regras para dados
 
-- Nao adicionar promessas sem documento de origem.
+- Não adicionar promessas sem documento de origem.
 - Incluir URL, data de consulta e evidencia quando existirem novas fontes.
 - Separar observacao factual de interpretacao politica.
 - Evitar classificacoes ideologicas sem nota de confianca ou justificacao documental.
