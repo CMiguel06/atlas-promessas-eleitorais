@@ -28,7 +28,7 @@ npm run build
 - Não adicionar promessas sem documento de origem.
 - Incluir URL, data de consulta e evidencia quando existirem novas fontes.
 - Separar observacao factual de interpretacao politica.
-- Evitar classificacoes ideologicas sem nota de confianca ou justificacao documental.
+- Evitar classificacoes ideologicas sem nota de confianca ou justificacao documen
 
 ## Estilo de codigo
 
