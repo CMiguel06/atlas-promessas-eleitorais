@@ -1,5 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PROMISES, PARTIES, POLICY_AREAS, STATUS_LABEL, ELECTIONS } from "@/lib/politrace-data";
+import {
+  DOCUMENTS,
+  PROMISES,
+  PARTIES,
+  POLICY_AREAS,
+  STATUS_LABEL,
+  ELECTIONS,
+} from "@/lib/politrace-data";
 
 export const Route = createFileRoute("/relatorios")({
   head: () => ({
@@ -39,19 +46,19 @@ function Page() {
   const sections = [
     [
       "1. Introdução",
-      "O presente relatório consolida a análise documental conduzida pelo Atlas, observatório académico de promessas eleitorais.",
+      "O presente relatório consolida a amostra documental conduzida pelo Atlas, observatório académico de promessas eleitorais.",
     ],
     [
       "2. Objetivo",
-      "Promover transparência democrática através da identificação, classificação e monitorização de compromissos políticos públicos.",
+      "Promover transparência democrática através da identificação, classificação e rastreabilidade documental de compromissos políticos públicos.",
     ],
     [
       "3. Fontes analisadas",
-      `${ELECTIONS.length} atos eleitorais; corpus documental composto por programas eleitorais, programas de governo, debates, comunicados e orçamentos.`,
+      `${ELECTIONS.length} atos eleitorais; ${DOCUMENTS.length} documentos ou fontes registadas, incluindo fontes eleitorais oficiais e TODOs técnicos de recolha.`,
     ],
     [
       "4. Metodologia",
-      "Deteção heurística de promessas, classificação por área temática, avaliação de mensurabilidade (1–5) e atribuição de estado de cumprimento com nível de confiança documental.",
+      "Deteção heurística de promessas, classificação por área temática, avaliação de mensurabilidade (1–5) e separação entre fonte da promessa, evidência de execução e avaliação de cumprimento.",
     ],
     ["5. Promessas identificadas", `Total: ${PROMISES.length}.`],
     [
@@ -62,10 +69,14 @@ function Page() {
     ],
     [
       "7. Mensurabilidade",
-      `Média: ${(PROMISES.reduce((a, p) => a + p.mensurabilidade, 0) / PROMISES.length).toFixed(2)} em 5.`,
+      `Média: ${
+        PROMISES.length
+          ? (PROMISES.reduce((a, p) => a + p.mensurabilidade, 0) / PROMISES.length).toFixed(2)
+          : "n/a"
+      } em 5.`,
     ],
     [
-      "8. Estado de cumprimento",
+      "8. Estado metodológico",
       Object.entries(STATUS_LABEL)
         .map(([k, v]) => `${v}: ${PROMISES.filter((p) => p.status === k).length}`)
         .join(" · "),
@@ -84,7 +95,7 @@ function Page() {
     ],
     [
       "12. Conclusões",
-      "O relatório fornece um instantâneo verificável do estado das promessas, fomentando literacia democrática e investigação académica.",
+      "O relatório fornece um instantâneo verificável do estado documental do corpus, fomentando literacia democrática e investigação académica.",
     ],
   ] as const;
 

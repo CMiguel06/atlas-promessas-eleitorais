@@ -34,7 +34,7 @@ function Home() {
             <h1 className="font-display text-5xl lg:text-7xl font-semibold leading-[1.02] tracking-tight">
               Observar promessas.
               <br />
-              <span className="italic text-primary">Medir cumprimento.</span>
+              <span className="italic text-primary">Rastrear evidências.</span>
               <br />
               Documentar a democracia.
             </h1>
@@ -55,7 +55,7 @@ function Home() {
                 to="/promessa-ou-fumo"
                 className="px-5 py-3 rounded-md border border-border bg-card font-medium hover:bg-secondary"
               >
-                Testar “Promessa ou Fumo?”
+                Testar classificador
               </Link>
               <Link
                 to="/metodologia"
@@ -91,7 +91,7 @@ function Home() {
           {[
             {
               t: "Pesquisa estruturada",
-              d: "Motor de busca por área, partido, eleição, mensurabilidade e estado de cumprimento.",
+              d: "Motor de busca por área, partido, eleição, mensurabilidade e estado metodológico.",
             },
             {
               t: "Classificação documental",
@@ -114,14 +114,14 @@ function Home() {
         <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10 items-start">
           <div>
             <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground mb-3">
-              Estados de cumprimento
+              Estados metodológicos
             </div>
             <h2 className="font-display text-3xl font-semibold mb-4">
               Oito estados, uma metodologia
             </h2>
             <p className="text-muted-foreground">
-              Cada promessa percorre estados verificáveis, com evidências documentais e nível de
-              confiança associado.
+              Cada promessa percorre estados verificáveis, distinguindo fonte da promessa, evidência
+              de execução e avaliação de cumprimento.
             </p>
           </div>
           <ul className="grid grid-cols-2 gap-2 text-sm">
